@@ -34,8 +34,8 @@ function module:Add(player: Player)
     local _Text = Drawing.new('Text');
 
     _Text.Text = player.Name == player.DisplayName and player.Name or player.DisplayName..' (@'..player.Name..')'
-    _Text.Size = 15
-    _Text.Color = Color3.fromRGB(200, 200, 200)
+    _Text.Size = getgenv().Settings.TextSize
+    _Text.Color = getgenv().Settings.TextColor
     _Text.Center = true
     _Text.Transparency = 1
     _Text.Visible = true
@@ -43,7 +43,7 @@ function module:Add(player: Player)
     local Connection = RunService.RenderStepped:Connect(function()
         local Character = player.Character
         if Character then
-            local Vector2Position: any = Vector3ToVector2(Character:FindFirstChild("HumanoidRootPart").Position)
+            local Vector2Position: any = Vector3ToVector2(Character:FindFirstChild(getgenv().Settings.Part).Position)
 
             _Text.Position = Vector2Position
         end
