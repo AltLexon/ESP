@@ -23,7 +23,7 @@ local _1_ = Players.PlayerAdded:Connect(function(player: Player)
 end)
 
 local _2_ = Players.PlayerRemoving:Connect(function(player: Player)
-    ESP:Remove()
+    ESP:Remove(player)
 end)
 
 table.insert(getgenv()._DRAWS['EXTRA'], _1_)
