@@ -4,6 +4,11 @@ local ESP = getgenv().require_file('Utils')
 
 ESP:Destroy()
 
+getgenv()._DRAWS = {
+    ['Connections'] = {},
+    ['Texts'] = {}
+}
+
 for _, player in next, Players:GetPlayers() do
     if player ~= Players.LocalPlayer then
         ESP:Add(player)
