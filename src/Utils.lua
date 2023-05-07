@@ -15,6 +15,7 @@ function module:Destroy()
     if getgenv()._DRAWS then
         local Connections = getgenv()._DRAWS['Connections'] or {}
         local Texts = getgenv()._DRAWS['Texts'] or {}
+        local ExtraConnections = getgenv()._DRAWS['EXTRA'] or {}
 
         for _, v in next, Connections do
             v:Disconnect()
@@ -22,10 +23,14 @@ function module:Destroy()
         for _, v in next, Texts do
             v:Remove()
         end
+        for _, v in next, ExtraConnections do
+            v:Disconnect()
+        end
 
         getgenv()._DRAWS = {
             ['Connections'] = {},
-            ['Texts'] = {}
+            ['Texts'] = {},
+            ['EXTRA'] = {}
         }
     end
 end

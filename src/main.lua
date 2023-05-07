@@ -6,7 +6,8 @@ ESP:Destroy()
 
 getgenv()._DRAWS = {
     ['Connections'] = {},
-    ['Texts'] = {}
+    ['Texts'] = {},
+    ['EXTRA'] = {}
 }
 
 for _, player in next, Players:GetPlayers() do
@@ -15,12 +16,15 @@ for _, player in next, Players:GetPlayers() do
     end
 end
 
-Players.PlayerAdded:Connect(function(player: Player)
+local _1_ = Players.PlayerAdded:Connect(function(player: Player)
     if player ~= Players.LocalPlayer then
         ESP:Add(player)
     end
 end)
 
-Players.PlayerRemoving:Connect(function(player: Player)
+local _2_ = Players.PlayerRemoving:Connect(function(player: Player)
     ESP:Remove()
 end)
+
+table.insert(getgenv().EXTRA, _1_)
+table.insert(getgenv().EXTRA, _2_)
