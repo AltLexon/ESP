@@ -38,6 +38,7 @@ function module:Add(player: Player)
     _Text.Color = Color3.fromRGB(200, 200, 200)
     _Text.Center = true
     _Text.Transparency = 1
+    _Text.Visible = true
     
     local Connection = RunService.RenderStepped:Connect(function()
         local Character = player.Character
