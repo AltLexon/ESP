@@ -1,6 +1,6 @@
 local _1_, _2_ = 'ESP', 'src'
 
-local src = string.format('https://raw.githubusercontent.com/AltLexon/%s/main/%s/', _1_, _2_)
+local src = string.format('https://raw.githubusercontent.com/AltLexon/%s/master/%s/', _1_, _2_)
 
 local function get_script(name: string)
     return game:HttpGet(src..name..'.lua')
