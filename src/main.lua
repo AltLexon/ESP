@@ -26,5 +26,5 @@ local _2_ = Players.PlayerRemoving:Connect(function(player: Player)
     ESP:Remove()
 end)
 
-table.insert(getgenv().EXTRA, _1_)
-table.insert(getgenv().EXTRA, _2_)
+table.insert(getgenv()._DRAWS['EXTRA'], _1_)
+table.insert(getgenv()._DRAWS['EXTRA'], _2_)
