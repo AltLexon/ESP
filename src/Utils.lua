@@ -46,7 +46,13 @@ function module:Add(player: Player)
     local Connection = RunService.RenderStepped:Connect(function()
         local Character = player.Character
         if Character then
-            local Vector2Position: any = Vector3ToVector2(Character:FindFirstChild(Settings.Part).Position)
+            local Part: any = Character:FindFirstChild(Settings.Part)
+
+            if not Part then
+                return
+            end
+
+            local Vector2Position: Vector2 = Vector3ToVector2(Character:FindFirstChild(Settings.Part).Position)
 
             _Text.Position = Vector2Position
         end
