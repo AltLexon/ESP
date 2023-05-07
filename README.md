@@ -7,7 +7,6 @@
 ### Made with Drawing Library.
 
 ```lua
-
 getgenv().Settings = {
     TextColor = Color3.fromRGB(200, 200, 200),
     TextSize = 15,

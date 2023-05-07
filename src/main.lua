@@ -20,3 +20,7 @@ Players.PlayerAdded:Connect(function(player: Player)
         ESP:Add(player)
     end
 end)
+
+Players.PlayerRemoving:Connect(function(player: Player)
+    ESP:Remove()
+end)

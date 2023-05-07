@@ -31,11 +31,14 @@ function module:Destroy()
 end
 
 function module:Add(player: Player)
+
+    local Settings = getgenv().Settings
+
     local _Text = Drawing.new('Text');
 
     _Text.Text = player.Name == player.DisplayName and player.Name or player.DisplayName..' (@'..player.Name..')'
-    _Text.Size = getgenv().Settings.TextSize
-    _Text.Color = getgenv().Settings.TextColor
+    _Text.Size = Settings.TextSize
+    _Text.Color = Settings.TextColor
     _Text.Center = true
     _Text.Transparency = 1
     _Text.Visible = true
@@ -43,14 +46,25 @@ function module:Add(player: Player)
     local Connection = RunService.RenderStepped:Connect(function()
         local Character = player.Character
         if Character then
-            local Vector2Position: any = Vector3ToVector2(Character:FindFirstChild(getgenv().Settings.Part).Position)
+            local Vector2Position: any = Vector3ToVector2(Character:FindFirstChild(Settings.Part).Position)
 
             _Text.Position = Vector2Position
         end
     end)
 
-    table.insert(getgenv()._DRAWS['Connections'], Connection)
-    table.insert(getgenv()._DRAWS['Texts'], _Text)
+    if not getgenv()._DRAWS or not getgenv()._DRAWS['Connections'] or not getgenv()._DRAWS['Texts'] then
+        return
+    end
+
+    getgenv()._DRAWS['Connections'][player.Name] = Connection
+    getgenv()._DRAWS['Texts'][player.Name] = _Text
+end
+
+function module:Remove(player: Player)
+    if getgenv()._DRAWS and getgenv()._DRAWS['Connections'] and getgenv()._DRAWS['Connections'][player.Name] then
+        getgenv()._DRAWS['Connections'][player.Name]:Disconnect()
+        getgenv()._DRAWS['Texts'][player.Name]:Remove()
+    end
 end
 
 return module
