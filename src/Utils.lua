@@ -13,8 +13,8 @@ local module = {}
 
 function module:Destroy()
     if getgenv()._DRAWS then
-        local Connections = getgenv()._DRAWS['Connections']
-        local Texts = getgenv()._DRAWS['Texts']
+        local Connections = getgenv()._DRAWS['Connections'] or {}
+        local Texts = getgenv()._DRAWS['Texts'] or {}
 
         for _, v in next, Connections do
             v:Disconnect()
